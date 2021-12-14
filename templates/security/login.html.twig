@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <!-- ============================ Login Start================================== -->
+
+    <section class="gray">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <div class="loving-modern-login">
+
+                        <h3>Login to your account</h3>
+                        <div class="row main_login_form">
+                            <div class="login_form_dm">
+                                <form method="post">
+                                    {% if error %}
+                                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                    {% endif %}
+
+                                    {% if app.user %}
+                                        <div class="mb-3">
+                                            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                                        </div>
+                                    {% endif %}
+
+                                    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                                    <label for="inputEMail">E Mail</label>
+                                    <input type="email" value="{{ last_username }}" name="eMail" id="inputEMail" class="form-control" required autofocus>
+                                    <label for="inputPassword">Password</label>
+                                    <input type="password" name="password" id="inputPassword" class="form-control" required>
+
+                                    <input type="hidden" name="_csrf_token"
+                                           value="{{ csrf_token('authenticate') }}"
+                                    >
+
+                                    {#
+                                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                                    See https://symfony.com/doc/current/security/remember_me.html
+
+                                    <div class="checkbox mb-3">
+                                        <label>
+                                            <input type="checkbox" name="_remember_me"> Remember me
+                                        </label>
+                                    </div>
+                                    #}
+
+                                    <button class="btn btn-lg btn-primary" type="submit">
+                                        Sign in
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============================ Login End ================================== -->
+
+    <!-- ============================ Newsletter Start ================================== -->
+    <section class="newsletter theme-bg" style="background-image:url(../../public/assets/img/bg-new.png)">
+        <div class="container">
+
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="sec-heading light center">
+                        <h2>Get Latest News</h2>
+                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+                    <div class="newsletter-box text-center">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="ti-email theme-cl"></span></span>
+                            <input type="text" class="form-control" placeholder="Enter your Email..">
+                        </div>
+                        <button type="button" class="btn btn-theme btn-rounded btn-m">subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============================ Newsletter End ================================== -->
+{% endblock %}

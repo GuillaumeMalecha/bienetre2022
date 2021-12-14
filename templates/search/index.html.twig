@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    {{ parent() }}
+    <div class="image-cover hero-banner" style="background:url(https://via.placeholder.com/1920x1000) no-repeat;"
+         data-overlay="7">
+        <div class="container">
+            {{ render(controller('App\\Controller\\Site\\SearchController::getFormRecherche')) }}
+        </div>
+    </div>
+{% endblock %}
+{% block body %}
+    <section>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="sec-heading center">
+                        <h2>Résultat de votre recherche</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                {% for p  in prestataires %}
+                    {% if p.nom is not null %}
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <a class="single-moderns-category " href="{{ path('app_presta_name', {'nom':p.nom}) }}">
+                                <figure>
+                                    {# <img src="https://via.placeholder.com/1200x850" title="store" alt="store"> #}
+                                    <figcaption class="overlay-bg">
+                                        <div class="cat-box">
+                                            <div class="cat-info">
+                                                <h4 class="cat-name">{{ p.nom }}</h4>
+                                                <span class="badge badge-pill theme-bg">{{ p.commune }}</span>
+                                            </div>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}
