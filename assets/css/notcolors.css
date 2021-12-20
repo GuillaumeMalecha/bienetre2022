@@ -11,24 +11,25 @@
 .purple-skin .btn-theme-2, .purple-skin .top-header, .purple-skin .pricing-bottom .btn-pricing,
 .goodred-skin .btn-theme-2, .goodred-skin .top-header, .goodred-skin .pricing-bottom .btn-pricing,
 .goodgreen-skin .btn-theme-2, .goodgreen-skin .top-header, .goodgreen-skin .pricing-bottom .btn-pricing,
-.blue2-skin .btn-theme-2, .blue2-skin .top-header, .blue2-skin .pricing-bottom .btn-pricing{ 
+.blue2-skin .btn-theme-2, .blue2-skin .top-header, .blue2-skin .pricing-bottom .btn-pricing,
+.goodpink-skin .btn-theme-2, .goodpink-skin .top-header, .goodpink-skin .pricing-bottom .btn-pricing{
 	background-color:#252c41;
 	background:#252c41;
 	border-color:#252c41;
 }
 .red-skin .hero-search h1, .green-skin .hero-search h1, .blue-skin .hero-search h1, .yellow-skin .hero-search h1, .darkblue-skin .hero-search h1,
 .oceangreen-skin .hero-search h1,
-.purple-skin .hero-search h1, .goodred-skin .hero-search h1, .goodgreen-skin .hero-search h1, .blue2-skin .hero-search h1{
+.purple-skin .hero-search h1, .goodred-skin .hero-search h1, .goodgreen-skin .hero-search h1, .blue2-skin .hero-search h1, .goodpink-skin .hero-search h1{
 	color:#252c41 !important;
 }
 .red-skin .image-cover .hero-search h1, .green-skin .image-cover .hero-search h1, .blue-skin .image-cover .hero-search h1, .yellow-skin .image-cover .hero-search h1, .darkblue-skin .image-cover .hero-search h1,
 .oceangreen-skin .image-cover .hero-search h1,
-.purple-skin .image-cover .hero-search h1, .goodred-skin .image-cover .hero-search h1, .goodgreen-skin .image-cover .hero-search h1, .blue2-skin .image-cover .hero-search h1{
+.purple-skin .image-cover .hero-search h1, .goodred-skin .image-cover .hero-search h1, .goodgreen-skin .image-cover .hero-search h1, .blue2-skin .image-cover .hero-search h1, .goodpink-skin .image-cover .hero-search h1{
 	color:#ffffff !important;
 }
 .red-skin .image-cover .hero-search.dark-text h1, .green-skin .image-cover .hero-search.dark-text h1, .blue-skin .image-cover .hero-search.dark-text h1, .yellow-skin .image-cover .hero-search h1, .darkblue-skin .image-cover .hero-search.dark-text h1,
 .oceangreen-skin .image-cover .hero-search.dark-text h1,
-.purple-skin .image-cover .hero-search.dark-text h1, .goodred-skin .image-cover .hero-search.dark-text h1, .goodgreen-skin .image-cover .hero-search.dark-text h1, .blue2-skin .image-cover .hero-search.dark-text h1{
+.purple-skin .image-cover .hero-search.dark-text h1, .goodred-skin .image-cover .hero-search.dark-text h1, .goodgreen-skin .image-cover .hero-search.dark-text h1, .blue2-skin .image-cover .hero-search.dark-text h1, .goodpink-skin .image-cover .hero-search.dark-text h1{
 	color:#252c41 !important;
 }
 .btn.btn-theme:hover, .btn.btn-theme:focus {
@@ -993,4 +994,101 @@
 .oceangreen-skin .avl-features li:before{
     box-shadow: 0px 0px 0px 4px rgba(1, 118, 255,0.4);
     -webkit-box-shadow: 0px 0px 0px 4px rgba(1, 118, 255,0.4);
+}
+
+/*-------------- Good Pink Color Option --------------------*/
+.goodpink-skin .nav.nav-tabs.nav-advance, .goodpink-skin .pulse,
+.goodpink-skin .theme-bg,
+.goodpink-skin .avl-features li:before,
+.goodpink-skin .avl-features li:before,
+.goodpink-skin span.bn-count,
+.goodpink-skin input:checked+.switchbtn-label,
+.goodpink-skin li.login-attri.theme-log a,
+.goodpink-skin .range-slider .ui-slider .ui-slider-handle,
+.goodpink-skin .range-slider .ui-widget-header,
+.goodpink-skin .pricing-bottom .btn-pricing:hover, .goodpink-skin .pricing-bottom .btn-pricing:focus
+.goodpink-skin .select2-container--default .select2-results__option--highlighted[aria-selected],
+.goodpink-skin .pagination li:first-child a,
+.goodpink-skin .btn.btn-theme,
+.goodpink-skin .btn.btn-theme:hover, .goodpink-skin .btn.btn-theme:focus,
+.goodpink-skin .btn.search-btn,
+.goodpink-skin .btn-theme-2:hover, .goodpink-skin .btn-theme-2:focus,
+.goodpink-skin .btn-outline-theme:hover, .goodpink-skin .btn-outline-theme:focus,
+.goodpink-skin .btn.search-btn,
+.goodpink-skin .simple-search-wrap .pk-input-group .pk-subscribe-submit,
+.goodpink-skin .btn.search-btn-outline:hover, .goodpink-skin .btn.search-btn-outline:focus,
+.goodpink-skin .property-listing.property-1 .listing-detail-btn .more-btn,
+.goodpink-skin .home-slider-desc .read-more,
+.goodpink-skin .nav-tabs .nav-item.show .nav-link, .goodpink-skin .nav-tabs .nav-link.active,
+.goodpink-skin .checkbox-custom:checked + .checkbox-custom-label:before,
+.goodpink-skin .radio-custom:checked + .radio-custom-label:before,
+.goodpink-skin .btn.pop-login,
+.goodpink-skin .single-widgets.widget_search form button,
+.goodpink-skin .single-widgets.widget_tags ul li a:hover, .goodpink-skin .single-widgets.widget_tags ul li a:focus,
+.goodpink-skin .pagination>.active>a, .goodpink-skin .pagination>.active>a:focus, .goodpink-skin .pagination>.active>a:hover, .goodpink-skin .pagination>.active>span, .goodpink-skin .pagination>.active>span:focus, .goodpink-skin .pagination>.active>span:hover, .goodpink-skin .pagination>li>a:focus, .goodpink-skin .pagination>li>a:hover{
+	background-color:#b35b88;
+	background:#b35b88;
+}
+
+.goodpink-skin a.link:hover, .goodpink-skin a.link:focus, .goodpink-skin a:hover, a:focus,
+.goodpink-skin .nav-tabs.nav-advance>li.active>a, .goodpink-skin .nav-tabs.nav-advance>li.active>a:focus, .goodpink-skin .nav-tabs.nav-advance>li.active>a:hover,
+.goodpink-skin .theme-cl,
+.goodpink-skin a.link, .goodpink-skin .icon-box-round,
+.goodpink-skin #multiSearchtab li a.active,
+.goodpink-skin .btn.btn-theme-light,
+.goodpink-skin .bl-continue,
+.goodpink-skin .header-dark-transparent.header-fixed .attributes li.submit-attri a,
+.goodpink-skin nav .menu li a.active,
+.goodpink-skin nav .menu li.dropdown.open > a,
+.goodpink-skin nav .menu .mg-menu li a i, .goodpink-skin nav .menu li a:hover,
+.goodpink-skin .recommended .pr-value,
+.goodpink-skin .btn-outline-theme,
+.goodpink-skin .attributes li.submit-attri.theme-log a,
+.goodpink-skin .btn.search-btn-outline,
+.goodpink-skin .dw-proprty-info li,
+.goodpink-skin .ps-trep .ps-type,
+.goodpink-skin .d-navigation ul li.active a,
+.goodpink-skin span.mod-close,
+.goodpink-skin .blog-page .blog-details blockquote .icon,
+.goodpink-skin .single-post-pagination .post-pagination-center-grid a,
+.goodpink-skin .blog-page .blog-details .comment-area .all-comments article .comment-details .comment-meta .comment-left-meta .comment-date,
+.goodpink-skin .cn-info-icon i, .goodpink-skin .client-info h5,
+.goodpink-skin .listing-card-info-price{
+	color:#b35b88;
+}
+
+.goodpink-skin .pagination>.active>a, .goodpink-skin .pagination>.active>a:focus, .goodpink-skin .pagination>.active>a:hover, .goodpink-skin .pagination>.active>span, .goodpink-skin .pagination>.active>span:focus, .goodpink-skin .pagination>.active>span:hover, .goodpink-skin .pagination>li>a:focus, .goodpink-skin .pagination>li>a:hover,
+.goodpink-skin .pagination li:first-child a,
+.goodpink-skin .range-slider .ui-slider .ui-slider-handle,
+.goodpink-skin .attributes li.submit-attri.theme-log a,
+.goodpink-skin .header-dark-transparent.header-fixed .attributes li.submit-attri a,
+.goodpink-skin .btn.btn-theme,
+.goodpink-skin .btn-theme-2:hover, .goodpink-skin .btn-theme-2:focus,
+.goodpink-skin .btn.btn-theme:hover, .goodpink-skin .btn.btn-theme:focus,
+.goodpink-skin .btn-outline-theme:hover, .goodpink-skin .btn-outline-theme:focus,
+.goodpink-skin .btn-outline-theme,
+.goodpink-skin .simple-search-wrap .pk-input-group .pk-subscribe-submit,
+.goodpink-skin .btn.search-btn-outline,
+.goodpink-skin .btn.search-btn-outline:hover, .goodpink-skin .btn.search-btn-outline:focus,
+.goodpink-skin .property-listing.property-1 .listing-detail-btn .more-btn,
+.goodpink-skin .nav-tabs .nav-item.show .nav-link, .goodpink-skin .nav-tabs .nav-link.active,
+.goodpink-skin .btn.pop-login,
+.goodpink-skin .single-widgets.widget_tags ul li a:hover, .goodpink-skin .single-widgets.widget_tags ul li a:focus{
+	border-color:#b35b88;
+}
+
+.goodpink-skin li.login-attri.theme-log a {
+	box-shadow:0 8px 5px rgba(99, 51, 76, 0.2);
+	-webkit-box-shadow:0 8px 5px rgba(99, 51, 76, 0.2);
+}
+
+.goodpink-skin .btn.btn-theme-light, .goodpink-skin .icon-box-round{
+	background:rgba(99, 51, 76, 0.1);
+}
+.goodpink-skin .property_item:hover .listing-thumb:before {
+	background: linear-gradient(to bottom, transparent 17%, #b35b88);
+}
+.oceangreen-skin .avl-features li:before{
+	box-shadow: 0px 0px 0px 4px rgba(99, 51, 76,0.4);
+	-webkit-box-shadow: 0px 0px 0px 4px rgba(99, 51, 76,0.4);
 }
