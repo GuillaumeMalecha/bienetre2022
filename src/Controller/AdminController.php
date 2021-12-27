@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/admin")
+     * @Route("/admin", name="admin")
      */
     public function admin()
     {
@@ -18,7 +18,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/prestataires")
+     * @Route("/admin/prestataires", name="prestataires")
      */
     public function prestataires()
     {
@@ -26,7 +26,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/commentaires")
+     * @Route("/admin/commentaires", name="commentaires")
      */
     public function commentaires()
     {

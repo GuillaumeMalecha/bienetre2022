@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProfileController extends AbstractController
 {
     /**
-     * @Route("/profile")
+     * @Route("/profile", name="profile")
      */
     public function profile()
     {
@@ -17,7 +17,7 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/profile/update")
+     * @Route("/profile/update", name="profile_update")
      */
     public function update()
     {
@@ -25,7 +25,7 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/profile/stage")
+     * @Route("/profile/stage", name="profile_stage")
      */
     public function stage()
     {

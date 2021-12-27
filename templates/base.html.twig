@@ -26,8 +26,8 @@
             <div class="header dark-header nav-left-side">
                 <nav class="headnavbar">
                     <div class="nav-header">
-                        <a href="#" class="brand normal-logo"><img src="assets/img/new-logo.png" alt="" /></a>
-                        <a href="#" class="brand brand-overlay"><img src="assets/img/new-logo.png" alt="" /></a>
+                        <a href="{{ path ('homepage') }}" class="brand normal-logo"><img src="assets/img/new-logo.png" alt="" /></a>
+                        <a href="{{ path ('homepage') }}" class="brand brand-overlay"><img src="assets/img/new-logo.png" alt="" /></a>
                         <button class="toggle-bar"><span class="ti-align-justify"></span></button>
                     </div>
                     <ul class="menu">
@@ -35,8 +35,8 @@
                         <li class="dropdown">
                             <a href="JavaScript:Void(0);" class="active">Home</a>
                             <ul class="dropdown-menu">
-                                    <a href="JavaScript:Void(0);" class="active">Client</a>
-                                    <a href="JavaScript:Void(0);" class="active">Professionnel</a>
+                                    <a href="{{ path ('homepage') }}" class="active">Client</a>
+                                    <a href="{{ path ('homepage') }}" class="active">Professionnel</a>
                             </ul>
                         </li>
 
@@ -94,7 +94,7 @@
                         <li class="dropdown">
                             <a href="JavaScript:Void(0);">Contactez-nous</a>
                             <ul class="dropdown-menu">
-                                    <a href="grid-full-width.html">Formulaire de contact</a>
+                                    <a href="{{ path ('contact') }}">Formulaire de contact</a>
 
                                 <li class="dropdown">
                                     <a href="JavaScript:Void(0);">Centres d'appels</a>
@@ -129,7 +129,7 @@
                                 <div class="mg-menu">
                                     <ul>
                                         <li>
-                                            <a href="blog-detail.html">
+                                            <a href="{{ path ('about') }}">
                                                 <div class="mg-menu-items">
                                                     <i class="ti-layout"></i>
                                                     <h5>Blog<span>Notre quotidien Bien-Être</span></h5>

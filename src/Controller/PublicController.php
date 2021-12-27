@@ -5,19 +5,20 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class PublicController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="homepage")
      */
-    public function homepage()
+    public function homepage(UrlGeneratorInterface $urlGenerator)
     {
         return $this->render('public/index.html.twig');
     }
 
     /**
-     * @Route("/about")
+     * @Route("/about", name="about")
      */
     public function about()
     {
@@ -25,7 +26,7 @@ class PublicController extends AbstractController
     }
 
     /**
-     * @Route("/contact")
+     * @Route("/contact", name="contact")
      */
     public function contact()
     {
