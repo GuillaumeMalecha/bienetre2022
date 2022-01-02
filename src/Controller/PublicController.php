@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -34,10 +35,18 @@ class PublicController extends AbstractController
     }
 
     /**
-     * @Route("/register")
+     * @Route("/register", name="register")
      */
     public function register()
     {
         return $this->render('public/register.html.twig');
+    }
+
+    /**
+     * @Route("/login", name="login")
+     */
+    public function login()
+    {
+        return $this->render('public/login.html.twig');
     }
 }

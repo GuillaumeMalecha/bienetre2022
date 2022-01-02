@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<!-- ============================ Login Start================================== -->
+<section class="gray">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="loving-modern-login">
+
+                    <h3>Connectez-vous à votre compte</h3>
+                    <div class="row main_login_form">
+                        <div class="login_form_dm">
+                            <form id="edd_login_form" class="edd_form" method="post">
+                                <fieldset>
+                                    <p class="edd-login-username">
+                                        <input class="form-control" type="text" placeholder="Nom d'utilisateur ou E-mail">
+                                    </p>
+                                    <p class="edd-login-password">
+                                        <input class="form-control" type="password" placeholder="Mot de passe">
+                                    </p>
+                                    <p class="edd-login-remember">
+                                        <input id="remember" class="checkbox-custom" name="remember" type="checkbox">
+                                        <label for="remember" class="checkbox-custom-label">Se souvenir de moi</label>
+                                    </p>
+                                    <p class="edd-lost-password">
+                                        <a href="#">Mot de passe oublié ?</a>
+                                    </p>
+                                    <p class="edd-login-submit">
+                                        <input type="submit" class="btn btn-theme full-width" value="Se connecter">
+                                    </p>
+
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ============================ Login End ================================== -->
+
+{% endblock %}
