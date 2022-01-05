@@ -49,4 +49,12 @@ class PublicController extends AbstractController
     {
         return $this->render('public/login.html.twig');
     }
+
+    /**
+     * @Route("/forgot", name="forgot")
+     */
+    public function forgot()
+    {
+        return $this->render('public/forgot.html.twig');
+    }
 }
