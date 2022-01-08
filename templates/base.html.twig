@@ -44,7 +44,7 @@
                             <a href="JavaScript:Void(0);">Catégories</a>
                             <ul class="dropdown-menu lg-wt">
                                 <li>
-                                    <a href="hotels.html">
+                                    <a href="{{ path('construct') }}">
                                         <div class="mg-menu-items">
                                             <i class="lni-apartment"></i>
                                             <h5>Un Hôtel<span>Réservez votre séjour</span></h5>
@@ -53,7 +53,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="adventures.html">
+                                    <a href="{{ path('construct') }}">
                                         <div class="mg-menu-items">
                                             <i class="lni-coffee-cup"></i>
                                             <h5>Un Café<span>Détente caféinée</span></h5>
@@ -62,7 +62,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="restaurants.html">
+                                    <a href="{{ path('construct') }}">
                                         <div class="mg-menu-items">
                                             <i class="lni-restaurant"></i>
                                             <h5>Un Restaurant<span>Un repas bien-être</span></h5>
@@ -71,7 +71,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="booking.html">
+                                    <a href="{{ path('construct') }}">
                                         <div class="mg-menu-items">
                                             <i class="lni-burger"></i>
                                             <h5>Un snack<span>Sur le pouce</span></h5>
@@ -80,7 +80,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="add-listing.html">
+                                    <a href="{{ path('construct') }}">
                                         <div class="mg-menu-items">
                                             <i class="lni-plus"></i>
                                             <h5>Ajoutez votre business<span>Vous voulez rejoindre notre réseau</span></h5>
@@ -138,7 +138,7 @@
                                         </li>
 
                                         <li>
-                                            <a href="pricing.html">
+                                            <a href="{{ path('construct') }}">
                                                 <div class="mg-menu-items">
                                                     <i class="ti-credit-card"></i>
                                                     <h5>Nos tarifs<span>Nos dernières offres et packs</span></h5>
@@ -147,7 +147,7 @@
                                         </li>
 
                                         <li>
-                                            <a href="contact.html">
+                                            <a href="{{ path('about') }}">
                                                 <div class="mg-menu-items">
                                                     <i class="ti-location-pin"></i>
                                                     <h5>Nous trouver<span>D'où venons-nous ?</span></h5>
@@ -156,10 +156,10 @@
                                         </li>
 
                                         <li>
-                                            <a href="component.html">
+                                            <a href="{{ path('construct') }}">
                                                 <div class="mg-menu-items">
                                                     <i class="ti-ruler-pencil"></i>
-                                                    <h5>Component<span>List of All Components</span></h5>
+                                                    <h5>Formation<span>Apprendre avec nous</span></h5>
                                                 </div>
                                             </a>
                                         </li>
@@ -193,10 +193,10 @@
                                     <img src="assets/img/new-logo.png" class="img-fluid f-logo" alt="" />
                                     <p>Boulevard d'Avroy 128<br>Liège - Belgique</p>
                                     <ul class="footer-bottom-social">
-                                        <li><a href="#"><i class="ti-facebook"></i></a></li>
-                                        <li><a href="#"><i class="ti-twitter"></i></a></li>
-                                        <li><a href="#"><i class="ti-instagram"></i></a></li>
-                                        <li><a href="#"><i class="ti-linkedin"></i></a></li>
+                                        <li><a href="www.facebook.com"><i class="ti-facebook"></i></a></li>
+                                        <li><a href="www.twitter.com"><i class="ti-twitter"></i></a></li>
+                                        <li><a href="www.instagram.com"><i class="ti-instagram"></i></a></li>
+                                        <li><a href="www.linkedin.com"><i class="ti-linkedin"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -204,9 +204,9 @@
                                 <div class="footer-widget">
                                     <h4 class="widget-title">Votre profil</h4>
                                     <ul class="footer-menu">
-                                        <li><a href="">Se connecter</a></li>
-                                        <li><a href="">Profil</a></li>
-                                        <li><a href="">Se déconnecter</a></li>
+                                        <li><a href="{{ path('login') }}">Se connecter</a></li>
+                                        <li><a href="{{ path('construct') }}">Profil</a></li>
+                                        <li><a href="{{ path('construct') }}">Se déconnecter</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -215,9 +215,9 @@
                                 <div class="footer-widget">
                                     <h4 class="widget-title">Essentiels</h4>
                                     <ul class="footer-menu">
-                                        <li><a href="">Réserver</a></li>
-                                        <li><a href="">Promotions</a></li>
-                                        <li><a href="">Événements</a></li>
+                                        <li><a href="{{ path('construct') }}">Réserver</a></li>
+                                        <li><a href="{{ path('construct') }}">Promotions</a></li>
+                                        <li><a href="{{ path('construct') }}">Événements</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -226,9 +226,9 @@
                                 <div class="footer-widget">
                                     <h4 class="widget-title">Bien-Être</h4>
                                     <ul class="footer-menu">
-                                        <li><a href="">Á propos</a></li>
-                                        <li><a href="">FAQ</a></li>
-                                        <li><a href="">Dans la presse</a></li>
+                                        <li><a href="{{ path('about') }}">Á propos</a></li>
+                                        <li><a href="{{ path('construct') }}">FAQ</a></li>
+                                        <li><a href="{{ path('construct') }}">Dans la presse</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -237,9 +237,9 @@
                                 <div class="footer-widget">
                                     <h4 class="widget-title">Liens utiles</h4>
                                     <ul class="footer-menu">
-                                        <li><a href="">Besoin d'aide</a></li>
-                                        <li><a href="">Contactez-nous</a></li>
-                                        <li><a href="">Vie privée</a></li>
+                                        <li><a href="{{ path('construct') }}">Besoin d'aide</a></li>
+                                        <li><a href="{{ path('contact') }}">Contactez-nous</a></li>
+                                        <li><a href="{{ path('construct') }}">Vie privée</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -266,6 +266,7 @@
     </div>
 {% endblock %}
 {% block javascripts %}
+    <script src="https://kit.fontawesome.com/338db63432.js" crossorigin="anonymous"></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/circleMagic.min.js"></script>
     <script src="assets/js/popper.min.js"></script>

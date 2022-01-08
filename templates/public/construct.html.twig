@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!-- ============================ Under Construction ================================== -->
+    <section class="error-wrap">
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <div class="col-lg-6 col-md-10">
+                    <div class="text-center">
+
+                        <i style="font-size: 250px; color: #00A877 " class="fas fa-tools"></i>
+                        <h2>Page en construction</h2>
+                        <h4>Revenez ici bientôt</h4>
+                        <a class="btn btn-theme" href="{{ path('homepage') }}">Retour à l'accueil</a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- ============================ Under Construction End ================================== -->
+
+    <!-- ============================ Newsletter Start ================================== -->
+    <section class="newsletter theme-bg" style="background-image:url(../../public/assets/img/bg-new.png)">
+        <div class="container">
+
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="sec-heading light center">
+                        <h2>Souscrire à notre Newsletter</h2>
+                        <p>Soyez sûr de recevoir nos dernières offres et informations pour ne rien rater de votre bien-être.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+                    <div class="newsletter-box text-center">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="ti-email theme-cl"></span></span>
+                            <input type="text" class="form-control" placeholder="Ajoutez votre adresse e-mail">
+                        </div>
+                        <button type="button" class="btn btn-theme btn-rounded btn-m">Souscrire</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============================ Newsletter End ================================== -->
+
+{% endblock %}
