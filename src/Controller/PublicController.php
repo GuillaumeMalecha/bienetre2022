@@ -65,4 +65,12 @@ class PublicController extends AbstractController
     {
         return $this->render('public/construct.html.twig');
     }
+
+    /**
+     * @Route("/prestataire", name="prestataire")
+     */
+    public function prestataire()
+    {
+        return $this->render('public/prestataire.html.twig');
+    }
 }
