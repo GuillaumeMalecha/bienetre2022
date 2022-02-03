@@ -27,6 +27,16 @@ class Images
      */
     private $image;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Prestataire::class, inversedBy="Images")
+     */
+    private $Prestataire;
+
+    /**
+     * @ORM\OneToOne(targetEntity=CategorieDeServices::class, mappedBy="Images", cascade={"persist", "remove"})
+     */
+    private $CategorieDeServices;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +62,40 @@ class Images
     public function setImage($image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getPrestataire(): ?Prestataire
+    {
+        return $this->Prestataire;
+    }
+
+    public function setPrestataire(?Prestataire $Prestataire): self
+    {
+        $this->Prestataire = $Prestataire;
+
+        return $this;
+    }
+
+    public function getCategorieDeServices(): ?CategorieDeServices
+    {
+        return $this->CategorieDeServices;
+    }
+
+    public function setCategorieDeServices(?CategorieDeServices $CategorieDeServices): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($CategorieDeServices === null && $this->CategorieDeServices !== null) {
+            $this->CategorieDeServices->setImages(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($CategorieDeServices !== null && $CategorieDeServices->getImages() !== $this) {
+            $CategorieDeServices->setImages($this);
+        }
+
+        $this->CategorieDeServices = $CategorieDeServices;
 
         return $this;
     }

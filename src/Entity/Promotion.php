@@ -52,6 +52,16 @@ class Promotion
      */
     private $affichagejusque;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Prestataire::class, inversedBy="Promotion")
+     */
+    private $Prestataire;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=CategorieDeServices::class, inversedBy="Promotion")
+     */
+    private $CategorieDeServices;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +147,30 @@ class Promotion
     public function setAffichagejusque(\DateTimeInterface $affichagejusque): self
     {
         $this->affichagejusque = $affichagejusque;
+
+        return $this;
+    }
+
+    public function getPrestataire(): ?Prestataire
+    {
+        return $this->Prestataire;
+    }
+
+    public function setPrestataire(?Prestataire $Prestataire): self
+    {
+        $this->Prestataire = $Prestataire;
+
+        return $this;
+    }
+
+    public function getCategorieDeServices(): ?CategorieDeServices
+    {
+        return $this->CategorieDeServices;
+    }
+
+    public function setCategorieDeServices(?CategorieDeServices $CategorieDeServices): self
+    {
+        $this->CategorieDeServices = $CategorieDeServices;
 
         return $this;
     }

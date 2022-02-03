@@ -57,6 +57,11 @@ class Stage
      */
     private $affichagejusque;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Prestataire::class, inversedBy="Stage")
+     */
+    private $Prestataire;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +159,18 @@ class Stage
     public function setAffichagejusque(\DateTimeInterface $affichagejusque): self
     {
         $this->affichagejusque = $affichagejusque;
+
+        return $this;
+    }
+
+    public function getPrestataire(): ?Prestataire
+    {
+        return $this->Prestataire;
+    }
+
+    public function setPrestataire(?Prestataire $Prestataire): self
+    {
+        $this->Prestataire = $Prestataire;
 
         return $this;
     }

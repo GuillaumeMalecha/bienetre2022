@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommentaireRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,26 @@ class Commentaire
      * @ORM\Column(type="date")
      */
     private $encodage;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Abus::class, mappedBy="Commentaire")
+     */
+    private $Abus;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Internaute::class, inversedBy="Commentaire")
+     */
+    private $Internaute;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Prestataire::class, inversedBy="Commentaire")
+     */
+    private $Prestataire;
+
+    public function __construct()
+    {
+        $this->Abus = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +108,60 @@ class Commentaire
     public function setEncodage(\DateTimeInterface $encodage): self
     {
         $this->encodage = $encodage;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Abus[]
+     */
+    public function getAbus(): Collection
+    {
+        return $this->Abus;
+    }
+
+    public function addAbu(Abus $abu): self
+    {
+        if (!$this->Abus->contains($abu)) {
+            $this->Abus[] = $abu;
+            $abu->setCommentaire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAbu(Abus $abu): self
+    {
+        if ($this->Abus->removeElement($abu)) {
+            // set the owning side to null (unless already changed)
+            if ($abu->getCommentaire() === $this) {
+                $abu->setCommentaire(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getInternaute(): ?Internaute
+    {
+        return $this->Internaute;
+    }
+
+    public function setInternaute(?Internaute $Internaute): self
+    {
+        $this->Internaute = $Internaute;
+
+        return $this;
+    }
+
+    public function getPrestataire(): ?Prestataire
+    {
+        return $this->Prestataire;
+    }
+
+    public function setPrestataire(?Prestataire $Prestataire): self
+    {
+        $this->Prestataire = $Prestataire;
 
         return $this;
     }

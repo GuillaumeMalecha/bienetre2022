@@ -27,6 +27,17 @@ class Abus
      */
     private $encodage;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Commentaire::class, inversedBy="Abus")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Commentaire;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Internaute::class, inversedBy="Abus")
+     */
+    private $Internaute;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +63,30 @@ class Abus
     public function setEncodage(\DateTimeInterface $encodage): self
     {
         $this->encodage = $encodage;
+
+        return $this;
+    }
+
+    public function getCommentaire(): ?Commentaire
+    {
+        return $this->Commentaire;
+    }
+
+    public function setCommentaire(?Commentaire $Commentaire): self
+    {
+        $this->Commentaire = $Commentaire;
+
+        return $this;
+    }
+
+    public function getInternaute(): ?Internaute
+    {
+        return $this->Internaute;
+    }
+
+    public function setInternaute(?Internaute $Internaute): self
+    {
+        $this->Internaute = $Internaute;
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LocaliteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,6 +24,16 @@ class Localite
      */
     private $localite;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Utilisateur::class, mappedBy="Localite")
+     */
+    private $Utilisateur;
+
+    public function __construct()
+    {
+        $this->Utilisateur = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +47,36 @@ class Localite
     public function setLocalite(string $localite): self
     {
         $this->localite = $localite;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Utilisateur[]
+     */
+    public function getUtilisateur(): Collection
+    {
+        return $this->Utilisateur;
+    }
+
+    public function addUtilisateur(Utilisateur $utilisateur): self
+    {
+        if (!$this->Utilisateur->contains($utilisateur)) {
+            $this->Utilisateur[] = $utilisateur;
+            $utilisateur->setLocalite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUtilisateur(Utilisateur $utilisateur): self
+    {
+        if ($this->Utilisateur->removeElement($utilisateur)) {
+            // set the owning side to null (unless already changed)
+            if ($utilisateur->getLocalite() === $this) {
+                $utilisateur->setLocalite(null);
+            }
+        }
 
         return $this;
     }

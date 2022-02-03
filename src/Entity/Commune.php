@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommuneRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,6 +24,16 @@ class Commune
      */
     private $commune;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Utilisateur::class, mappedBy="Commune")
+     */
+    private $Utilisateur;
+
+    public function __construct()
+    {
+        $this->Utilisateur = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +47,36 @@ class Commune
     public function setCommune(string $commune): self
     {
         $this->commune = $commune;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Utilisateur[]
+     */
+    public function getUtilisateur(): Collection
+    {
+        return $this->Utilisateur;
+    }
+
+    public function addUtilisateur(Utilisateur $utilisateur): self
+    {
+        if (!$this->Utilisateur->contains($utilisateur)) {
+            $this->Utilisateur[] = $utilisateur;
+            $utilisateur->setCommune($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUtilisateur(Utilisateur $utilisateur): self
+    {
+        if ($this->Utilisateur->removeElement($utilisateur)) {
+            // set the owning side to null (unless already changed)
+            if ($utilisateur->getCommune() === $this) {
+                $utilisateur->setCommune(null);
+            }
+        }
 
         return $this;
     }
