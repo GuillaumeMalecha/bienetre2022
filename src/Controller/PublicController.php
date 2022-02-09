@@ -5,6 +5,12 @@ namespace App\Controller;
 
 use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\SubmitButton;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -37,25 +43,80 @@ class PublicController extends AbstractController
     /**
      * @Route("/register", name="register")
      */
-    public function register()
+    public function register(FormFactoryInterface $factory)
     {
-        return $this->render('public/register.html.twig');
+        $builder = $factory->createBuilder();
+
+        $builder->add('name', TextType::class, [
+            'label' => ' ',
+            'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Nom d\'utilisateur']
+        ])
+            ->add('mail', EmailType::class, [
+                'label' => ' ',
+                'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Adresse e-mail']
+            ])
+            ->add('entreprise', NumberType::class, [
+                'label' => ' ',
+                'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Numéro de TVA']
+            ])
+            ->add('password', PasswordType::class, [
+                'label' => ' ',
+                'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Mot de passe']
+            ]);
+
+        $form = $builder->getForm();
+
+        $formView = $form->createView();
+
+        return $this->render('public/register.html.twig', [
+            'formView' => $formView
+        ]);
     }
 
     /**
      * @Route("/login", name="login")
      */
-    public function login()
+    public function login(FormFactoryInterface $factory)
     {
-        return $this->render('public/login.html.twig');
+        $builder = $factory->createBuilder();
+
+        $builder->add('mail', EmailType::class, [
+                'label' => ' ',
+                'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Votre adresse email']
+            ])
+            ->add('password', PasswordType::class, [
+                'label' => ' ',
+                'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Votre mot de passe']
+            ]);
+
+        $form = $builder->getForm();
+
+        $formView = $form->createView();
+
+        return $this->render('public/login.html.twig', [
+            'formView' => $formView
+        ]);
     }
 
     /**
      * @Route("/forgot", name="forgot")
      */
-    public function forgot()
+    public function forgot(FormFactoryInterface $factory)
     {
-        return $this->render('public/forgot.html.twig');
+        $builder = $factory->createBuilder();
+
+        $builder->add('mail', EmailType::class, [
+            'label' => ' ',
+            'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Adresse e-mail']
+        ]);
+
+        $form = $builder->getForm();
+
+        $formView = $form->createView();
+
+        return $this->render('public/forgot.html.twig', [
+            'formView' => $formView
+        ]);
     }
 
     /**
@@ -72,5 +133,39 @@ class PublicController extends AbstractController
     public function prestataire()
     {
         return $this->render('public/prestataire.html.twig');
+    }
+
+
+    /**
+     * @Route("/create", name="create")
+     */
+    public function create(FormFactoryInterface $factory)
+    {
+        $builder = $factory->createBuilder();
+
+        $builder->add('name', TextType::class, [
+            'label' => ' ',
+            'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Votre nom']
+        ])
+            ->add('firstname', TextType::class, [
+                'label' => ' ',
+                'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Votre prénom']
+            ])
+            ->add('mail', EmailType::class, [
+                'label' => ' ',
+                'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Votre adresse email']
+            ])
+            ->add('password', PasswordType::class, [
+                'label' => ' ',
+                'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Votre mot de passe']
+            ]);
+
+        $form = $builder->getForm();
+
+        $formView = $form->createView();
+
+        return $this->render('public/create.html.twig', [
+            'formView' => $formView
+        ]);
     }
 }

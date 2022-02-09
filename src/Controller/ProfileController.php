@@ -31,4 +31,6 @@ class ProfileController extends AbstractController
     {
         return $this->render('profile/stage.html.twig');
     }
+
+
 }

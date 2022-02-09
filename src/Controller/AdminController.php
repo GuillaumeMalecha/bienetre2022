@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
@@ -31,5 +32,26 @@ class AdminController extends AbstractController
     public function commentaires()
     {
         return $this->render('admin/commentaires.html.twig');
+    }
+
+
+    /**
+     * @Route("/admin/create", name="user_create")
+     */
+    public function create(FormFactoryInterface $factory)
+    {
+        $builder = $factory->createBuilder();
+
+        $builder->add('name')
+            ->add('shortDescription')
+            ->add('category');
+
+        $form = $builder->getForm();
+
+        $formView = $form->createView();
+
+        return $this->render('admin/create.html.twig', [
+            'formView' => $formView
+        ]);
     }
 }

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="image-cover hero-banner" style="background:url(https://picsum.photos/1920/1000) no-repeat;" data-overlay="6">
+        <div class="container">
+
+        <h3 class="big-header-capt capti">Enregistrer un nouveau service</h3>
+            <div class="full-search-2 italian-search hero-search-radius box-style">
+                <div class="hero-search-content">
+
+                    <div class="row">
+
+                        <div class="col-lg-4 col-md-4 col-sm-12 small-padd">
+                            <div class="form-group">
+                                <div class="input-with-icon">
+
+    {{ form(formView) }}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
