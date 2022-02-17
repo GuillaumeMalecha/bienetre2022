@@ -3,16 +3,21 @@
 
 namespace App\Controller;
 
+use App\Entity\Prestataire;
+use http\Client\Response;
 use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\SubmitButton;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 class PublicController extends AbstractController
 {
@@ -40,31 +45,49 @@ class PublicController extends AbstractController
         return $this->render('public/contact.html.twig');
     }
 
+    // Formulaire d'inscription d'un prestataire
     /**
      * @Route("/register", name="register")
      */
-    public function register(FormFactoryInterface $factory)
+    public function register(FormFactoryInterface $factory, Request $request): \Symfony\Component\HttpFoundation\Response
     {
-        $builder = $factory->createBuilder();
+        $prestataire = new Prestataire();
+        $builder = $factory->createBuilder(FormType::class, null, [
+            'data_class' => Prestataire::class
+        ]);
 
-        $builder->add('name', TextType::class, [
+        $builder->add('nom', TextType::class, [
             'label' => ' ',
             'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Nom d\'utilisateur']
-        ])
-            ->add('mail', EmailType::class, [
+           ])
+            ->add('siteInternet', TextType::class, [
                 'label' => ' ',
-                'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Adresse e-mail']
+                'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Lien de votre site internet']
             ])
-            ->add('entreprise', NumberType::class, [
+            ->add('numtel', NumberType::class, [
+                'label' => ' ',
+                'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Numéro de Téléphone']
+            ])
+            ->add('numtva', NumberType::class, [
                 'label' => ' ',
                 'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Numéro de TVA']
             ])
-            ->add('password', PasswordType::class, [
-                'label' => ' ',
-                'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Mot de passe']
-            ]);
-
+            ->add('save', SubmitType::class, [
+                'label' => 'Créer mon compte professionnel',
+                'attr' => ['class' => 'btn btn-theme full-width']
+            ])
+            ;
         $form = $builder->getForm();
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()) {
+            $prestataire = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($prestataire);
+            $entityManager->flush();
+
+        }
 
         $formView = $form->createView();
 
@@ -72,6 +95,8 @@ class PublicController extends AbstractController
             'formView' => $formView
         ]);
     }
+
+// Fin du formulaire de prestataire
 
     /**
      * @Route("/login", name="login")

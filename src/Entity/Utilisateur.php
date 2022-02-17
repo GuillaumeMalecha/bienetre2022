@@ -3,14 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
  */
-class Utilisateur
+class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
@@ -20,14 +20,20 @@ class Utilisateur
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $email;
+    private $username;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json")
      */
-    private $motdepasse;
+    private $roles = [];
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+    private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -40,24 +46,14 @@ class Utilisateur
     private $adresserue;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="boolean")
      */
-    private $inscription;
+    private $banni;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $typeutilisateur;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $nbessaisinfructueux;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $banni;
+    private $email;
 
     /**
      * @ORM\Column(type="boolean")
@@ -65,63 +61,107 @@ class Utilisateur
     private $inscriptconf;
 
     /**
-     * @ORM\OneToMany(targetEntity=Internaute::class, mappedBy="Utilisateur")
+     * @ORM\Column(type="date")
      */
-    private $Internaute;
+    private $inscription;
 
     /**
-     * @ORM\OneToMany(targetEntity=Prestataire::class, mappedBy="Utilisateur")
+     * @ORM\Column(type="string", length=255)
      */
-    private $Prestataire;
+    private $motdepasse;
 
     /**
-     * @ORM\ManyToOne(targetEntity=CodePostal::class, inversedBy="Utilisateur")
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $CodePostal;
+    private $nbessaisinfructueux;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Localite::class, inversedBy="Utilisateur")
+     * @ORM\Column(type="string", length=255)
      */
-    private $Localite;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Commune::class, inversedBy="Utilisateur")
-     */
-    private $Commune;
-
-    public function __construct()
-    {
-        $this->Internaute = new ArrayCollection();
-        $this->Prestataire = new ArrayCollection();
-    }
+    private $typeutilisateur;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEmail(): ?string
+    /**
+     * @deprecated since Symfony 5.3, use getUserIdentifier instead
+     */
+    public function getUsername(): string
     {
-        return $this->email;
+        return (string) $this->username;
     }
 
-    public function setEmail(string $email): self
+    public function setUsername(string $username): self
     {
-        $this->email = $email;
+        $this->username = $username;
 
         return $this;
     }
 
-    public function getMotdepasse(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
     {
-        return $this->motdepasse;
+        return (string) $this->username;
     }
 
-    public function setMotdepasse(string $motdepasse): self
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        $this->motdepasse = $motdepasse;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
     public function getAdressenum(): ?string
@@ -148,42 +188,6 @@ class Utilisateur
         return $this;
     }
 
-    public function getInscription(): ?\DateTimeInterface
-    {
-        return $this->inscription;
-    }
-
-    public function setInscription(\DateTimeInterface $inscription): self
-    {
-        $this->inscription = $inscription;
-
-        return $this;
-    }
-
-    public function getTypeutilisateur(): ?string
-    {
-        return $this->typeutilisateur;
-    }
-
-    public function setTypeutilisateur(string $typeutilisateur): self
-    {
-        $this->typeutilisateur = $typeutilisateur;
-
-        return $this;
-    }
-
-    public function getNbessaisinfructueux(): ?int
-    {
-        return $this->nbessaisinfructueux;
-    }
-
-    public function setNbessaisinfructueux(int $nbessaisinfructueux): self
-    {
-        $this->nbessaisinfructueux = $nbessaisinfructueux;
-
-        return $this;
-    }
-
     public function getBanni(): ?bool
     {
         return $this->banni;
@@ -192,6 +196,18 @@ class Utilisateur
     public function setBanni(bool $banni): self
     {
         $this->banni = $banni;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }
@@ -208,98 +224,50 @@ class Utilisateur
         return $this;
     }
 
-    /**
-     * @return Collection|Internaute[]
-     */
-    public function getInternaute(): Collection
+    public function getInscription(): ?\DateTimeInterface
     {
-        return $this->Internaute;
+        return $this->inscription;
     }
 
-    public function addInternaute(Internaute $internaute): self
+    public function setInscription(\DateTimeInterface $inscription): self
     {
-        if (!$this->Internaute->contains($internaute)) {
-            $this->Internaute[] = $internaute;
-            $internaute->setUtilisateur($this);
-        }
+        $this->inscription = $inscription;
 
         return $this;
     }
 
-    public function removeInternaute(Internaute $internaute): self
+    public function getMotdepasse(): ?string
     {
-        if ($this->Internaute->removeElement($internaute)) {
-            // set the owning side to null (unless already changed)
-            if ($internaute->getUtilisateur() === $this) {
-                $internaute->setUtilisateur(null);
-            }
-        }
+        return $this->motdepasse;
+    }
+
+    public function setMotdepasse(string $motdepasse): self
+    {
+        $this->motdepasse = $motdepasse;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Prestataire[]
-     */
-    public function getPrestataire(): Collection
+    public function getNbessaisinfructueux(): ?int
     {
-        return $this->Prestataire;
+        return $this->nbessaisinfructueux;
     }
 
-    public function addPrestataire(Prestataire $prestataire): self
+    public function setNbessaisinfructueux(?int $nbessaisinfructueux): self
     {
-        if (!$this->Prestataire->contains($prestataire)) {
-            $this->Prestataire[] = $prestataire;
-            $prestataire->setUtilisateur($this);
-        }
+        $this->nbessaisinfructueux = $nbessaisinfructueux;
 
         return $this;
     }
 
-    public function removePrestataire(Prestataire $prestataire): self
+    public function getTypeutilisateur(): ?string
     {
-        if ($this->Prestataire->removeElement($prestataire)) {
-            // set the owning side to null (unless already changed)
-            if ($prestataire->getUtilisateur() === $this) {
-                $prestataire->setUtilisateur(null);
-            }
-        }
-
-        return $this;
+        return $this->typeutilisateur;
     }
 
-    public function getCodePostal(): ?CodePostal
+    public function setTypeutilisateur(string $typeutilisateur): self
     {
-        return $this->CodePostal;
-    }
-
-    public function setCodePostal(?CodePostal $CodePostal): self
-    {
-        $this->CodePostal = $CodePostal;
-
-        return $this;
-    }
-
-    public function getLocalite(): ?Localite
-    {
-        return $this->Localite;
-    }
-
-    public function setLocalite(?Localite $Localite): self
-    {
-        $this->Localite = $Localite;
-
-        return $this;
-    }
-
-    public function getCommune(): ?Commune
-    {
-        return $this->Commune;
-    }
-
-    public function setCommune(?Commune $Commune): self
-    {
-        $this->Commune = $Commune;
+        $this->typeutilisateur = $typeutilisateur;
 
         return $this;
     }
