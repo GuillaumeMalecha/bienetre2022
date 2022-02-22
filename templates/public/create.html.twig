@@ -6,7 +6,6 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-md-10">
                     <div class="loving-modern-login">
-
                         <h3>Inscrivez-vous comme client</h3>
                         <h4>et trouvez votre bien être</h4>
                         <div class="row main_login_form">
@@ -17,8 +16,8 @@
 
                                 {{ form_widget(formView) }}
 
-                                <p class="edd-login-submit">
-                                    <input type="submit" class="btn btn-theme full-width" value="Créer mon compte">
+                                <p class="already-login">
+                                    Déjà membre ? <a href="{{ path('login') }}" class="theme-cl">Connectez-vous</a>
                                 </p>
 
                                 {{ form_end(formView) }}

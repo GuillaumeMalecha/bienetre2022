@@ -4,6 +4,8 @@
 namespace App\Controller;
 
 use App\Entity\Prestataire;
+use App\Form\InternauteType;
+use App\Form\PrestataireType;
 use http\Client\Response;
 use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -51,33 +53,7 @@ class PublicController extends AbstractController
      */
     public function register(FormFactoryInterface $factory, Request $request): \Symfony\Component\HttpFoundation\Response
     {
-        $prestataire = new Prestataire();
-        $builder = $factory->createBuilder(FormType::class, null, [
-            'data_class' => Prestataire::class
-        ]);
-
-        $builder->add('nom', TextType::class, [
-            'label' => ' ',
-            'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Nom d\'utilisateur']
-           ])
-            ->add('siteInternet', TextType::class, [
-                'label' => ' ',
-                'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Lien de votre site internet']
-            ])
-            ->add('numtel', NumberType::class, [
-                'label' => ' ',
-                'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Numéro de Téléphone']
-            ])
-            ->add('numtva', NumberType::class, [
-                'label' => ' ',
-                'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Numéro de TVA']
-            ])
-            ->add('save', SubmitType::class, [
-                'label' => 'Créer mon compte professionnel',
-                'attr' => ['class' => 'btn btn-theme full-width']
-            ])
-            ;
-        $form = $builder->getForm();
+        $form = $this->createForm(PrestataireType::class);
 
         $form->handleRequest($request);
 
@@ -164,33 +140,34 @@ class PublicController extends AbstractController
     /**
      * @Route("/create", name="create")
      */
-    public function create(FormFactoryInterface $factory)
+    public function create(FormFactoryInterface $factory, Request $request): \Symfony\Component\HttpFoundation\Response
     {
-        $builder = $factory->createBuilder();
+        $form = $this->createForm(InternauteType::class);
 
-        $builder->add('name', TextType::class, [
-            'label' => ' ',
-            'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Votre nom']
-        ])
-            ->add('firstname', TextType::class, [
-                'label' => ' ',
-                'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Votre prénom']
-            ])
-            ->add('mail', EmailType::class, [
-                'label' => ' ',
-                'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Votre adresse email']
-            ])
-            ->add('password', PasswordType::class, [
-                'label' => ' ',
-                'attr' => ['class' => 'form-control b-r', 'placeholder' => 'Votre mot de passe']
-            ]);
+        $form->handleRequest($request);
 
-        $form = $builder->getForm();
+        if($form->isSubmitted()) {
+            $internaute = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($internaute);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('confirm');
+
+        }
 
         $formView = $form->createView();
 
         return $this->render('public/create.html.twig', [
             'formView' => $formView
         ]);
+    }
+
+    /**
+     * @Route("/confirm", name="confirm")
+     */
+    public function confirm()
+    {
+        return $this->render('public/confirm.html.twig');
     }
 }
