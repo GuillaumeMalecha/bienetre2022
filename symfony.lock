@@ -124,18 +124,6 @@
             "./config/packages/sensio_framework_extra.yaml"
         ]
     },
-    "sensiolabs/security-checker": {
-        "version": "6.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "4.0",
-            "ref": "160c9b600564faa1224e8f387d49ef13ceb8b793"
-        },
-        "files": [
-            "./config/packages/security_checker.yaml"
-        ]
-    },
     "symfony/asset": {
         "version": "v5.4.3"
     },
@@ -221,12 +209,6 @@
             "./src/Kernel.php"
         ]
     },
-    "symfony/http-client": {
-        "version": "v5.4.1"
-    },
-    "symfony/http-client-contracts": {
-        "version": "v2.5.0"
-    },
     "symfony/http-foundation": {
         "version": "v5.4.0"
     },
@@ -246,7 +228,7 @@
         }
     },
     "symfony/mime": {
-        "version": "v5.4.0"
+        "version": "v5.4.3"
     },
     "symfony/options-resolver": {
         "version": "v5.4.3"
@@ -261,7 +243,7 @@
         "version": "v1.24.0"
     },
     "symfony/polyfill-intl-idn": {
-        "version": "v1.23.0"
+        "version": "v1.24.0"
     },
     "symfony/polyfill-intl-normalizer": {
         "version": "v1.23.0"
@@ -373,6 +355,18 @@
     },
     "symfony/uid": {
         "version": "v5.4.3"
+    },
+    "symfony/validator": {
+        "version": "5.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.3",
+            "ref": "c32cfd98f714894c4f128bb99aa2530c1227603c"
+        },
+        "files": [
+            "./config/packages/validator.yaml"
+        ]
     },
     "symfony/var-dumper": {
         "version": "v5.4.0"
