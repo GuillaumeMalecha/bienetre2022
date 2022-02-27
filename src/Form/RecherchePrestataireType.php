@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\CategorieDeServices;
-use App\Entity\CategorieServices;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Entity\Prestataire;
+use App\Form\RecherchePrestataireType;
 use App\Form\SearchForm;
 use App\Repository\PrestataireRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,17 +18,17 @@ class SearchController extends AbstractController
      */
     public function index(Request $request, PrestataireRepository $repo)
     {
-        $form = $this->createForm(SearchForm::class);
+        $form=$this->createForm(RecherchePrestataireType::class);
         $form->handleRequest($request);
 
         $prestataire = $form->get('prestataire')->getData();
-        $commune = $form->get('commune')->getData();
+        $commune =$form->get('commune')->getData();
         $categorie = $form->get('categorie')->getData();
 
-        $prestataires = $repo->findByPrestaCommuneService($prestataire, $commune, $categorie);
+        $prestataires = $repo->findBy($prestataire, $commune, $categorie);
         return $this->render('search/index.html.twig', [
             'controller_name' => 'SearchController',
-            'prestataires' => $prestataires
+            'prestataires' =>$prestataires
         ]);
     }
 }
