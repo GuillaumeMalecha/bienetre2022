@@ -22,10 +22,10 @@ class SearchController extends AbstractController
         $form->handleRequest($request);
 
         $prestataire = $form->get('prestataire')->getData();
-        $commune =$form->get('commune')->getData();
+        $localite =$form->get('commune')->getData();
         $categorie = $form->get('categorie')->getData();
 
-        $prestataires = $repo->findBy($prestataire, $commune, $categorie);
+        $prestataires = $repo->findAllWithJoins($localite);
         return $this->render('search/index.html.twig', [
             'controller_name' => 'SearchController',
             'prestataires' =>$prestataires

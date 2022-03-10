@@ -23,14 +23,16 @@ class PrestataireRepository extends ServiceEntityRepository
     /**
      * @return Prestataire[]
      */
-    public function findAllWithJoins(){
+    public function findAllWithJoins($localite){
         $qb = $this->createQueryBuilder('p')
             ->innerJoin('p.CategorieDeServices', 's')
-            ->leftJoin('p.localite', 'l')
-            ->addSelect('s');
+            ->leftJoin('p.Utilisateur', 'u')
+            ->leftJoin('u.localite', 'l')
+            ->andWhere('l.localite = :val')
+            ->setParameter('val', $localite);
+
 
         $query = $qb->getQuery();
-        dd($query->getResult());
         return $query->getResult();
     }
 

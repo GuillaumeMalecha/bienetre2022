@@ -29,9 +29,15 @@ class Localite
      */
     private $Utilisateur;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Utilisateur::class, mappedBy="localite")
+     */
+    private $utilisateurs;
+
     public function __construct()
     {
         $this->Utilisateur = new ArrayCollection();
+        $this->utilisateurs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -79,5 +85,13 @@ class Localite
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Utilisateur>
+     */
+    public function getUtilisateurs(): Collection
+    {
+        return $this->utilisateurs;
     }
 }

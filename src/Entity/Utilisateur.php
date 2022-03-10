@@ -80,6 +80,11 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $typeutilisateur;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Localite::class, inversedBy="utilisateurs")
+     */
+    private $localite;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -268,6 +273,18 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     public function setTypeutilisateur(string $typeutilisateur): self
     {
         $this->typeutilisateur = $typeutilisateur;
+
+        return $this;
+    }
+
+    public function getLocalite(): ?Localite
+    {
+        return $this->localite;
+    }
+
+    public function setLocalite(?Localite $localite): self
+    {
+        $this->localite = $localite;
 
         return $this;
     }
