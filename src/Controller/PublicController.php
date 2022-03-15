@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Prestataire;
 use App\Form\InternauteType;
 use App\Form\PrestataireType;
+use App\Repository\PrestataireRepository;
 use http\Client\Response;
 use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,9 +27,12 @@ class PublicController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function homepage(UrlGeneratorInterface $urlGenerator)
+    public function homepage(PrestataireRepository $repo)
     {
-        return $this->render('public/index.html.twig');
+        $prestataires = $repo->lastsPrestataires();
+        return $this->render('public/index.html.twig', [
+            'prestataires' => $prestataires
+        ]);
     }
 
     /**

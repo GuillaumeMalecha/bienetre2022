@@ -31,4 +31,35 @@ class SearchController extends AbstractController
             'prestataires' =>$prestataires
         ]);
     }
+    /**
+     *@Route("/search-form", name="app_form_recherche")
+     */
+    public function getFormRecherche(){
+
+        $form = $this->createForm(RecherchePrestataireType::class);
+
+        return $this->render('site/_partials/_form_recherche.html.twig',
+            ['formulaire'=> $form->createView()]
+        );
+    }
+
+    /**
+     * @param Prestataire $prestataire
+     * @Route("/prestataires/{nom}", name="app_presta_name")
+     */
+    public function getPrestataireByName(Prestataire $prestataire)
+    {
+        return $this->render("site/prestataires/prestataire.html.twig", ['prestataire'=>$prestataire]);
+    }
+
+    /**
+     * @Route("/prestataires", name="app_prestataires")
+     */
+    public function getAllPrestataires(PrestataireRepository $repo)
+    {
+        $prestataires = $repo->findAll();
+        return $this->render('allprestataire.html.twig',['prestataires'=>$prestataires]);
+
+    }
+
 }
